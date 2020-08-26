@@ -1,0 +1,52 @@
+<%= form_with(model: asistencia_reunion_planificacion, local: true) do |form| %>
+  <% if asistencia_reunion_planificacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(asistencia_reunion_planificacion.errors.count, "error") %> prohibited this asistencia_reunion_planificacion from being saved:</h2>
+
+      <ul>
+        <% asistencia_reunion_planificacion.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :miembros_nucleo %>
+    <%= form.number_field :miembros_nucleo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :miembros_apoyo %>
+    <%= form.number_field :miembros_apoyo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reflexion_semana %>
+    <%= form.text_field :reflexion_semana %>
+  </div>
+
+  <div class="field">
+    <%= form.label :meta_amigos_alcanzada %>
+    <%= form.check_box :meta_amigos_alcanzada %>
+  </div>
+
+  <div class="field">
+    <%= form.label :meta_amigos_establecida %>
+    <%= form.check_box :meta_amigos_establecida %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hora_reunion %>
+    <%= form.datetime_select :hora_reunion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ofrenda %>
+    <%= form.text_field :ofrenda %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

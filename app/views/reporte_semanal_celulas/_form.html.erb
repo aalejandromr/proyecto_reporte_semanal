@@ -1,0 +1,47 @@
+<%= form_with(model: reporte_semanal_celula, local: true) do |form| %>
+  <% if reporte_semanal_celula.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reporte_semanal_celula.errors.count, "error") %> prohibited this reporte_semanal_celula from being saved:</h2>
+
+      <ul>
+        <% reporte_semanal_celula.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lider %>
+    <%= form.text_field :lider %>
+  </div>
+
+  <div class="field">
+    <%= form.label :anfitrion %>
+    <%= form.text_field :anfitrion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sector_id %>
+    <%= form.text_field :sector_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reunion_evaluacion %>
+    <%= form.check_box :reunion_evaluacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visita_supervisor %>
+    <%= form.check_box :visita_supervisor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :supervisor_id %>
+    <%= form.text_field :supervisor_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

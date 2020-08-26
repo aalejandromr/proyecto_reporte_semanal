@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  miembros_nucleo: 1
+  miembros_apoyo: 1
+  reflexion_semana: MyString
+  meta_amigos_alcanzada: false
+  meta_amigos_establecida: false
+  hora_reunion: 2020-08-22 19:48:21
+  ofrenda: 1.5
+
+two:
+  miembros_nucleo: 1
+  miembros_apoyo: 1
+  reflexion_semana: MyString
+  meta_amigos_alcanzada: false
+  meta_amigos_establecida: false
+  hora_reunion: 2020-08-22 19:48:21
+  ofrenda: 1.5

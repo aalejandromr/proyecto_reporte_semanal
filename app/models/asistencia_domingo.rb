@@ -1,0 +1,2 @@
+class AsistenciaDomingo < ApplicationRecord
+end

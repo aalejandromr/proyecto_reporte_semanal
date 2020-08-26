@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lider:</strong>
+  <%= @reporte_semanal_celula.lider %>
+</p>
+
+<p>
+  <strong>Anfitrion:</strong>
+  <%= @reporte_semanal_celula.anfitrion %>
+</p>
+
+<p>
+  <strong>Sector:</strong>
+  <%= @reporte_semanal_celula.sector_id %>
+</p>
+
+<p>
+  <strong>Reunion evaluacion:</strong>
+  <%= @reporte_semanal_celula.reunion_evaluacion %>
+</p>
+
+<p>
+  <strong>Visita supervisor:</strong>
+  <%= @reporte_semanal_celula.visita_supervisor %>
+</p>
+
+<p>
+  <strong>Supervisor:</strong>
+  <%= @reporte_semanal_celula.supervisor_id %>
+</p>
+
+<%= link_to 'Edit', edit_reporte_semanal_celula_path(@reporte_semanal_celula) %> |
+<%= link_to 'Back', reporte_semanal_celulas_path %>

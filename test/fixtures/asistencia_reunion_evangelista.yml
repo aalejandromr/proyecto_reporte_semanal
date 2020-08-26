@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hnos_a: 1
+  hnos_i: 1
+  friends: 1
+  childrens: 1
+  ofrenda: 1.5
+  aceptados: 1
+  personas_en_discipulado: 1
+  leccion: 1
+  candidatos_bautismo: 1
+  visitas: 1
+  personas_ministradas: 1
+
+two:
+  hnos_a: 1
+  hnos_i: 1
+  friends: 1
+  childrens: 1
+  ofrenda: 1.5
+  aceptados: 1
+  personas_en_discipulado: 1
+  leccion: 1
+  candidatos_bautismo: 1
+  visitas: 1
+  personas_ministradas: 1

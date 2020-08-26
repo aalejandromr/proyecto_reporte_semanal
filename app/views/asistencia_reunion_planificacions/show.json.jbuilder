@@ -1,0 +1,1 @@
+json.partial! "asistencia_reunion_planificacions/asistencia_reunion_planificacion", asistencia_reunion_planificacion: @asistencia_reunion_planificacion

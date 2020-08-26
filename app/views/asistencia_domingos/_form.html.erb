@@ -1,0 +1,37 @@
+<%= form_with(model: asistencia_domingo, local: true) do |form| %>
+  <% if asistencia_domingo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(asistencia_domingo.errors.count, "error") %> prohibited this asistencia_domingo from being saved:</h2>
+
+      <ul>
+        <% asistencia_domingo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :hnos_a %>
+    <%= form.number_field :hnos_a %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hnos_i %>
+    <%= form.number_field :hnos_i %>
+  </div>
+
+  <div class="field">
+    <%= form.label :friends %>
+    <%= form.number_field :friends %>
+  </div>
+
+  <div class="field">
+    <%= form.label :childrens %>
+    <%= form.number_field :childrens %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

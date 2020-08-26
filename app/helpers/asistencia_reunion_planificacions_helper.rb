@@ -1,0 +1,2 @@
+module AsistenciaReunionPlanificacionsHelper
+end

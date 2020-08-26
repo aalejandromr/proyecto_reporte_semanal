@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Asistencia Reunion Planificacions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Miembros nucleo</th>
+      <th>Miembros apoyo</th>
+      <th>Reflexion semana</th>
+      <th>Meta amigos alcanzada</th>
+      <th>Meta amigos establecida</th>
+      <th>Hora reunion</th>
+      <th>Ofrenda</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @asistencia_reunion_planificacions.each do |asistencia_reunion_planificacion| %>
+      <tr>
+        <td><%= asistencia_reunion_planificacion.miembros_nucleo %></td>
+        <td><%= asistencia_reunion_planificacion.miembros_apoyo %></td>
+        <td><%= asistencia_reunion_planificacion.reflexion_semana %></td>
+        <td><%= asistencia_reunion_planificacion.meta_amigos_alcanzada %></td>
+        <td><%= asistencia_reunion_planificacion.meta_amigos_establecida %></td>
+        <td><%= asistencia_reunion_planificacion.hora_reunion %></td>
+        <td><%= asistencia_reunion_planificacion.ofrenda %></td>
+        <td><%= link_to 'Show', asistencia_reunion_planificacion %></td>
+        <td><%= link_to 'Edit', edit_asistencia_reunion_planificacion_path(asistencia_reunion_planificacion) %></td>
+        <td><%= link_to 'Destroy', asistencia_reunion_planificacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Asistencia Reunion Planificacion', new_asistencia_reunion_planificacion_path %>

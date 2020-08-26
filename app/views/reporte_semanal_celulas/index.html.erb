@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reporte Semanal Celulas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lider</th>
+      <th>Anfitrion</th>
+      <th>Sector</th>
+      <th>Reunion evaluacion</th>
+      <th>Visita supervisor</th>
+      <th>Supervisor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reporte_semanal_celulas.each do |reporte_semanal_celula| %>
+      <tr>
+        <td><%= reporte_semanal_celula.lider %></td>
+        <td><%= reporte_semanal_celula.anfitrion %></td>
+        <td><%= reporte_semanal_celula.sector_id %></td>
+        <td><%= reporte_semanal_celula.reunion_evaluacion %></td>
+        <td><%= reporte_semanal_celula.visita_supervisor %></td>
+        <td><%= reporte_semanal_celula.supervisor_id %></td>
+        <td><%= link_to 'Show', reporte_semanal_celula %></td>
+        <td><%= link_to 'Edit', edit_reporte_semanal_celula_path(reporte_semanal_celula) %></td>
+        <td><%= link_to 'Destroy', reporte_semanal_celula, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reporte Semanal Celula', new_reporte_semanal_celula_path %>

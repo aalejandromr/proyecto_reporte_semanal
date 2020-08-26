@@ -1,0 +1,72 @@
+<%= form_with(model: asistencia_reunion_evangelistum, local: true) do |form| %>
+  <% if asistencia_reunion_evangelistum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(asistencia_reunion_evangelistum.errors.count, "error") %> prohibited this asistencia_reunion_evangelistum from being saved:</h2>
+
+      <ul>
+        <% asistencia_reunion_evangelistum.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :hnos_a %>
+    <%= form.number_field :hnos_a %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hnos_i %>
+    <%= form.number_field :hnos_i %>
+  </div>
+
+  <div class="field">
+    <%= form.label :friends %>
+    <%= form.number_field :friends %>
+  </div>
+
+  <div class="field">
+    <%= form.label :childrens %>
+    <%= form.number_field :childrens %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ofrenda %>
+    <%= form.text_field :ofrenda %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aceptados %>
+    <%= form.number_field :aceptados %>
+  </div>
+
+  <div class="field">
+    <%= form.label :personas_en_discipulado %>
+    <%= form.number_field :personas_en_discipulado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :leccion %>
+    <%= form.number_field :leccion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :candidatos_bautismo %>
+    <%= form.number_field :candidatos_bautismo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visitas %>
+    <%= form.number_field :visitas %>
+  </div>
+
+  <div class="field">
+    <%= form.label :personas_ministradas %>
+    <%= form.number_field :personas_ministradas %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

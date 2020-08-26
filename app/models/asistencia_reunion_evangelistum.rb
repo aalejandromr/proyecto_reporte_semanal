@@ -1,0 +1,2 @@
+class AsistenciaReunionEvangelistum < ApplicationRecord
+end
