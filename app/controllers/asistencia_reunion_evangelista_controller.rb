@@ -4,7 +4,7 @@ class AsistenciaReunionEvangelistaController < ApplicationController
   # GET /asistencia_reunion_evangelista
   # GET /asistencia_reunion_evangelista.json
   def index
-    @asistencia_reunion_evangelista = AsistenciaReunionEvangelistum.all
+    @asistencia_reunion_evangelista = AsistenciaReunionEvangelista.all
   end
 
   # GET /asistencia_reunion_evangelista/1
@@ -14,7 +14,8 @@ class AsistenciaReunionEvangelistaController < ApplicationController
 
   # GET /asistencia_reunion_evangelista/new
   def new
-    @asistencia_reunion_evangelistum = AsistenciaReunionEvangelistum.new
+    @asistencia_reunion_evangelistum = AsistenciaReunionEvangelista.new
+    @asistencia_reunion_planificacion_id = params[:asistencia_reunion_planificacion_id]
   end
 
   # GET /asistencia_reunion_evangelista/1/edit
@@ -24,11 +25,11 @@ class AsistenciaReunionEvangelistaController < ApplicationController
   # POST /asistencia_reunion_evangelista
   # POST /asistencia_reunion_evangelista.json
   def create
-    @asistencia_reunion_evangelistum = AsistenciaReunionEvangelistum.new(asistencia_reunion_evangelistum_params)
+    @asistencia_reunion_evangelistum = AsistenciaReunionEvangelista.new(asistencia_reunion_evangelistum_params)
 
     respond_to do |format|
       if @asistencia_reunion_evangelistum.save
-        format.html { redirect_to @asistencia_reunion_evangelistum, notice: 'Asistencia reunion evangelistum was successfully created.' }
+        format.html { redirect_to @asistencia_reunion_evangelistum, notice: 'Asistencia reunion evangelista was successfully created.' }
         format.json { render :show, status: :created, location: @asistencia_reunion_evangelistum }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class AsistenciaReunionEvangelistaController < ApplicationController
   def update
     respond_to do |format|
       if @asistencia_reunion_evangelistum.update(asistencia_reunion_evangelistum_params)
-        format.html { redirect_to @asistencia_reunion_evangelistum, notice: 'Asistencia reunion evangelistum was successfully updated.' }
+        format.html { redirect_to @asistencia_reunion_evangelistum, notice: 'Asistencia reunion evangelista was successfully updated.' }
         format.json { render :show, status: :ok, location: @asistencia_reunion_evangelistum }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class AsistenciaReunionEvangelistaController < ApplicationController
   def destroy
     @asistencia_reunion_evangelistum.destroy
     respond_to do |format|
-      format.html { redirect_to asistencia_reunion_evangelista_url, notice: 'Asistencia reunion evangelistum was successfully destroyed.' }
+      format.html { redirect_to asistencia_reunion_evangelista_index_url, notice: 'Asistencia reunion evangelista was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +65,11 @@ class AsistenciaReunionEvangelistaController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_asistencia_reunion_evangelistum
-      @asistencia_reunion_evangelistum = AsistenciaReunionEvangelistum.find(params[:id])
+      @asistencia_reunion_evangelistum = AsistenciaReunionEvangelista.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def asistencia_reunion_evangelistum_params
-      params.require(:asistencia_reunion_evangelistum).permit(:hnos_a, :hnos_i, :friends, :childrens, :ofrenda, :aceptados, :personas_en_discipulado, :leccion, :candidatos_bautismo, :visitas, :personas_ministradas)
+      params.require(:asistencia_reunion_evangelistum).permit(:hnos_a, :hnos_i, :friends, :childrens, :ofrenda, :aceptados, :personas_en_discipulado, :leccion, :candidatos_bautismo, :visitas, :personas_ministradas, :rec)
     end
 end

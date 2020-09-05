@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_014016) do
+ActiveRecord::Schema.define(version: 2020_08_30_194756) do
 
   create_table "asistencia_domingos", force: :cascade do |t|
     t.integer "hnos_a"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2020_08_23_014016) do
     t.integer "childrens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "rec"
+    t.integer "conv"
   end
 
   create_table "asistencia_reunion_evangelista", force: :cascade do |t|
@@ -33,6 +35,24 @@ ActiveRecord::Schema.define(version: 2020_08_23_014016) do
     t.integer "candidatos_bautismo"
     t.integer "visitas"
     t.integer "personas_ministradas"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "rec"
+  end
+
+  create_table "asistencia_reunion_evangelists", force: :cascade do |t|
+    t.integer "hnos_a"
+    t.integer "hnos_i"
+    t.integer "friends"
+    t.integer "childrens"
+    t.float "ofrenda"
+    t.integer "aceptados"
+    t.integer "personas_en_discipulado"
+    t.integer "leccion"
+    t.integer "candidatos_bautismo"
+    t.integer "visitas"
+    t.integer "personas_ministradas"
+    t.integer "rec"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -67,13 +87,12 @@ ActiveRecord::Schema.define(version: 2020_08_23_014016) do
   create_table "reporte_semanal_celulas", force: :cascade do |t|
     t.string "lider"
     t.string "anfitrion"
-    t.integer "sector_id", null: false
     t.boolean "reunion_evaluacion"
     t.boolean "visita_supervisor"
     t.integer "supervisor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["sector_id"], name: "index_reporte_semanal_celulas_on_sector_id"
+    t.integer "celula_id"
     t.index ["supervisor_id"], name: "index_reporte_semanal_celulas_on_supervisor_id"
   end
 
@@ -91,6 +110,6 @@ ActiveRecord::Schema.define(version: 2020_08_23_014016) do
   end
 
   add_foreign_key "celulas", "sectors"
-  add_foreign_key "reporte_semanal_celulas", "sectors"
+  add_foreign_key "reporte_semanal_celulas", "celulas"
   add_foreign_key "reporte_semanal_celulas", "supervisors"
 end

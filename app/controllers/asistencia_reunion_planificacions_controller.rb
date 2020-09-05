@@ -26,11 +26,13 @@ class AsistenciaReunionPlanificacionsController < ApplicationController
   def create
     @asistencia_reunion_planificacion = AsistenciaReunionPlanificacion.new(asistencia_reunion_planificacion_params)
 
+    if @asistencia_reunion_planificacion.save
+      redirect_to controller: 'asistencia_reunion_evangelists', action: 'new', asistencia_reunion_planificacion_id: @asistencia_reunion_planificacion.id, notice: 'Asistencia reunion planificacion was successfully created.'
+      return
+    end
+
     respond_to do |format|
-      if @asistencia_reunion_planificacion.save
-        format.html { redirect_to @asistencia_reunion_planificacion, notice: 'Asistencia reunion planificacion was successfully created.' }
-        format.json { render :show, status: :created, location: @asistencia_reunion_planificacion }
-      else
+      if !@asistencia_reunion_planificacion.save
         format.html { render :new }
         format.json { render json: @asistencia_reunion_planificacion.errors, status: :unprocessable_entity }
       end
@@ -40,11 +42,13 @@ class AsistenciaReunionPlanificacionsController < ApplicationController
   # PATCH/PUT /asistencia_reunion_planificacions/1
   # PATCH/PUT /asistencia_reunion_planificacions/1.json
   def update
+    if @asistencia_reunion_planificacion.update(asistencia_reunion_planificacion_params)
+      redirect_to controller: 'asistencia_reunion_evangelists', action: 'new', asistencia_reunion_planificacion_id: @asistencia_reunion_planificacion.id, notice: 'Asistencia reunion planificacion was successfully updated.'
+      return
+    end
+
     respond_to do |format|
-      if @asistencia_reunion_planificacion.update(asistencia_reunion_planificacion_params)
-        format.html { redirect_to @asistencia_reunion_planificacion, notice: 'Asistencia reunion planificacion was successfully updated.' }
-        format.json { render :show, status: :ok, location: @asistencia_reunion_planificacion }
-      else
+      if !@asistencia_reunion_planificacion.update(asistencia_reunion_planificacion_params)
         format.html { render :edit }
         format.json { render json: @asistencia_reunion_planificacion.errors, status: :unprocessable_entity }
       end

@@ -22,8 +22,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :sector_id %>
-    <%= form.text_field :sector_id %>
+    <%= form.label :celula_id %>
+    <%= form.collection_select :celula_id, Celula.all, :id, :name_with_sector, prompt: true %>
   </div>
 
   <div class="field">
@@ -38,10 +38,10 @@
 
   <div class="field">
     <%= form.label :supervisor_id %>
-    <%= form.text_field :supervisor_id %>
+    <%= form.collection_select :supervisor_id, Supervisor.all, :id, :name, prompt: true %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save and end" %>
   </div>
 <% end %>

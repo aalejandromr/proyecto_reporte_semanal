@@ -1,0 +1,2 @@
+module AsistenciaReunionEvangelistsHelper
+end

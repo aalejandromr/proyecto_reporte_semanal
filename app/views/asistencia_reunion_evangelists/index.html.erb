@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Asistencia Reunion Evangelists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hnos a</th>
+      <th>Hnos i</th>
+      <th>Friends</th>
+      <th>Childrens</th>
+      <th>Ofrenda</th>
+      <th>Aceptados</th>
+      <th>Personas en discipulado</th>
+      <th>Leccion</th>
+      <th>Candidatos bautismo</th>
+      <th>Visitas</th>
+      <th>Personas ministradas</th>
+      <th>Rec</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @asistencia_reunion_evangelists.each do |asistencia_reunion_evangelist| %>
+      <tr>
+        <td><%= asistencia_reunion_evangelist.hnos_a %></td>
+        <td><%= asistencia_reunion_evangelist.hnos_i %></td>
+        <td><%= asistencia_reunion_evangelist.friends %></td>
+        <td><%= asistencia_reunion_evangelist.childrens %></td>
+        <td><%= asistencia_reunion_evangelist.ofrenda %></td>
+        <td><%= asistencia_reunion_evangelist.aceptados %></td>
+        <td><%= asistencia_reunion_evangelist.personas_en_discipulado %></td>
+        <td><%= asistencia_reunion_evangelist.leccion %></td>
+        <td><%= asistencia_reunion_evangelist.candidatos_bautismo %></td>
+        <td><%= asistencia_reunion_evangelist.visitas %></td>
+        <td><%= asistencia_reunion_evangelist.personas_ministradas %></td>
+        <td><%= asistencia_reunion_evangelist.rec %></td>
+        <td><%= link_to 'Show', asistencia_reunion_evangelist %></td>
+        <td><%= link_to 'Edit', edit_asistencia_reunion_evangelist_path(asistencia_reunion_evangelist) %></td>
+        <td><%= link_to 'Destroy', asistencia_reunion_evangelist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Asistencia Reunion Evangelist', new_asistencia_reunion_evangelist_path %>

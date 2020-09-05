@@ -10,9 +10,9 @@ class AsistenciaReunionEvangelistaTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Asistencia Reunion Evangelista"
   end
 
-  test "creating a Asistencia reunion evangelistum" do
+  test "creating a Asistencia reunion evangelista" do
     visit asistencia_reunion_evangelista_url
-    click_on "New Asistencia Reunion Evangelistum"
+    click_on "New Asistencia Reunion Evangelista"
 
     fill_in "Aceptados", with: @asistencia_reunion_evangelistum.aceptados
     fill_in "Candidatos bautismo", with: @asistencia_reunion_evangelistum.candidatos_bautismo
@@ -24,14 +24,15 @@ class AsistenciaReunionEvangelistaTest < ApplicationSystemTestCase
     fill_in "Ofrenda", with: @asistencia_reunion_evangelistum.ofrenda
     fill_in "Personas en discipulado", with: @asistencia_reunion_evangelistum.personas_en_discipulado
     fill_in "Personas ministradas", with: @asistencia_reunion_evangelistum.personas_ministradas
+    fill_in "Rec", with: @asistencia_reunion_evangelistum.rec
     fill_in "Visitas", with: @asistencia_reunion_evangelistum.visitas
-    click_on "Create Asistencia reunion evangelistum"
+    click_on "Create Asistencia reunion evangelista"
 
-    assert_text "Asistencia reunion evangelistum was successfully created"
+    assert_text "Asistencia reunion evangelista was successfully created"
     click_on "Back"
   end
 
-  test "updating a Asistencia reunion evangelistum" do
+  test "updating a Asistencia reunion evangelista" do
     visit asistencia_reunion_evangelista_url
     click_on "Edit", match: :first
 
@@ -45,19 +46,20 @@ class AsistenciaReunionEvangelistaTest < ApplicationSystemTestCase
     fill_in "Ofrenda", with: @asistencia_reunion_evangelistum.ofrenda
     fill_in "Personas en discipulado", with: @asistencia_reunion_evangelistum.personas_en_discipulado
     fill_in "Personas ministradas", with: @asistencia_reunion_evangelistum.personas_ministradas
+    fill_in "Rec", with: @asistencia_reunion_evangelistum.rec
     fill_in "Visitas", with: @asistencia_reunion_evangelistum.visitas
-    click_on "Update Asistencia reunion evangelistum"
+    click_on "Update Asistencia reunion evangelista"
 
-    assert_text "Asistencia reunion evangelistum was successfully updated"
+    assert_text "Asistencia reunion evangelista was successfully updated"
     click_on "Back"
   end
 
-  test "destroying a Asistencia reunion evangelistum" do
+  test "destroying a Asistencia reunion evangelista" do
     visit asistencia_reunion_evangelista_url
     page.accept_confirm do
       click_on "Destroy", match: :first
     end
 
-    assert_text "Asistencia reunion evangelistum was successfully destroyed"
+    assert_text "Asistencia reunion evangelista was successfully destroyed"
   end
 end

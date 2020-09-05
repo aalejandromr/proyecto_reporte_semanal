@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Celulas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @celulas.each do |celula| %>
+      <tr>
+        <td><%= celula.id %></td>
+        <td><%= celula.name %></td>
+        <td><%= link_to 'Show', celula %></td>
+        <td><%= link_to 'Edit', edit_celula_path(celula) %></td>
+        <td><%= link_to 'Destroy', celula, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Celula', new_celula_path %>
