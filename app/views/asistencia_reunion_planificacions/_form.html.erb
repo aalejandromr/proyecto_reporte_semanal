@@ -1,52 +1,61 @@
-<%= form_with(model: asistencia_reunion_planificacion, local: true) do |form| %>
-  <% if asistencia_reunion_planificacion.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(asistencia_reunion_planificacion.errors.count, "error") %> prohibited this asistencia_reunion_planificacion from being saved:</h2>
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+  <%= form_with(model: asistencia_reunion_planificacion, local: true) do |form| %>
+    <% if asistencia_reunion_planificacion.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(asistencia_reunion_planificacion.errors.count, "error") %> prohibited this asistencia_reunion_planificacion from being saved:</h2>
 
-      <ul>
-        <% asistencia_reunion_planificacion.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% asistencia_reunion_planificacion.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="-mx-3 md:flex mb-6">
+      <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+        <%= form.label :miembros_nucleo, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.number_field :miembros_nucleo, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+      </div>
+      <div class="md:w-1/2 px-3">
+        <%= form.label :miembros_apoyo, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.number_field :miembros_apoyo, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
+      </div>
+    </div>
+
+    <div class="-mx-3 md:flex mb-6">
+      <div class="md:w-1/2 px-3">
+        <%= form.label :reflexion_semana, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.text_field :reflexion_semana, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+      </div>
+
+      <div class="md:w-1/2 px-3">
+        <%= form.label :meta_amigos_alcanzada, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.check_box :meta_amigos_alcanzada, :class => "form-checkbox text-green-500" %>
+      </div>
+
+      <div class="md:w-1/2 px-3">
+        <%= form.label :meta_amigos_establecida, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.check_box :meta_amigos_establecida, :class => "form-checkbox text-green-500"  %>
+      </div>
+    </div>
+
+    <div class="-mx-3 md:flex mb-6">
+      <div class="md:w-1/2 px-3">
+        <%= form.label :hora_reunion, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.datetime_select :hora_reunion %>
+      </div>
+
+      <div class="md:w-1/2 px-3">
+        <%= form.label :ofrenda, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.text_field :ofrenda, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+      </div>
+    </div>
+
+
+    <div class="actions text-right">
+      <%= button_tag( :class => "bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center") do %>
+        Next <svg class="w-4 h-4 mr-2"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14 2h-7.229l7.014 7h-13.785v6h13.785l-7.014 7h7.229l10-10z"/></svg>
+      <% end %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :miembros_nucleo %>
-    <%= form.number_field :miembros_nucleo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :miembros_apoyo %>
-    <%= form.number_field :miembros_apoyo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reflexion_semana %>
-    <%= form.text_field :reflexion_semana %>
-  </div>
-
-  <div class="field">
-    <%= form.label :meta_amigos_alcanzada %>
-    <%= form.check_box :meta_amigos_alcanzada %>
-  </div>
-
-  <div class="field">
-    <%= form.label :meta_amigos_establecida %>
-    <%= form.check_box :meta_amigos_establecida %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hora_reunion %>
-    <%= form.datetime_select :hora_reunion %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ofrenda %>
-    <%= form.text_field :ofrenda %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit 'Save and next' %>
-  </div>
-<% end %>
+</div>

@@ -1,3 +1,4 @@
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
 <%= form_with(model: reporte_semanal_celula, local: true) do |form| %>
   <% if reporte_semanal_celula.errors.any? %>
     <div id="error_explanation">
@@ -11,37 +12,50 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :lider %>
-    <%= form.text_field :lider %>
+  <div class="-mx-3 md:flex mb-6">
+    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= form.label :lider, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= form.text_field :lider, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+    </div>
+
+    <div class="md:w-1/2 px-3">
+      <%= form.label :anfitrion, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+      <%= form.text_field :anfitrion, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :anfitrion %>
-    <%= form.text_field :anfitrion %>
+<div class="-mx-3 md:flex mb-6">
+
+  <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+    <%= form.label :celula_id, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.collection_select :celula_id, Celula.all, :id, :name_with_sector, {prompt: true}, {class: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"} %>
   </div>
 
-  <div class="field">
-    <%= form.label :celula_id %>
-    <%= form.collection_select :celula_id, Celula.all, :id, :name_with_sector, prompt: true %>
+  <div class="md:w-1/2 px-3">
+    <%= form.label :reunion_evaluacion, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.check_box :reunion_evaluacion, :class => "form-checkbox text-green-500" %>
+  </div>
+</div>
+
+<div class="-mx-3 md:flex mb-6">
+  <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+    <%= form.label :visita_supervisor, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.check_box :visita_supervisor, :class => "form-checkbox text-green-500" %>
   </div>
 
-  <div class="field">
-    <%= form.label :reunion_evaluacion %>
-    <%= form.check_box :reunion_evaluacion %>
+  <div class="md:w-1/2 px-3">
+    <%= form.label :supervisor_id, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.collection_select :supervisor_id, Supervisor.all, :id, :name, {prompt: true}, {class: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"} %>
   </div>
+</div>
+  <%= form.hidden_field :asistencia_domingo_id, value: @asistencia_domingo_id %>
+  <%= form.hidden_field :asistencia_reunion_evangelist_id, value: @asistencia_reunion_evangelist_id %>
+  <%= form.hidden_field :asistencia_reunion_planificacion_id, value: @asistencia_reunion_planificacion_id %>
 
-  <div class="field">
-    <%= form.label :visita_supervisor %>
-    <%= form.check_box :visita_supervisor %>
-  </div>
-
-  <div class="field">
-    <%= form.label :supervisor_id %>
-    <%= form.collection_select :supervisor_id, Supervisor.all, :id, :name, prompt: true %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Save and end" %>
-  </div>
+  <div class="actions text-right">
+      <%= button_tag( :class => "bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center") do %>
+        Save and end
+      <% end %>
+    </div>
 <% end %>
+</div>

@@ -43,7 +43,7 @@ class AsistenciaReunionPlanificacionsController < ApplicationController
   # PATCH/PUT /asistencia_reunion_planificacions/1.json
   def update
     if @asistencia_reunion_planificacion.update(asistencia_reunion_planificacion_params)
-      redirect_to controller: 'asistencia_reunion_evangelists', action: 'new', asistencia_reunion_planificacion_id: @asistencia_reunion_planificacion.id, notice: 'Asistencia reunion planificacion was successfully updated.'
+      redirect_to controller: 'asistencia_reunion_evangelists', action: 'edit', asistencia_reunion_planificacion_id: @asistencia_reunion_planificacion.id, notice: 'Asistencia reunion planificacion was successfully updated.'
       return
     end
 

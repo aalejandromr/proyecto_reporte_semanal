@@ -16,6 +16,8 @@ class ReporteSemanalCelulasController < ApplicationController
   def new
     @reporte_semanal_celula = ReporteSemanalCelula.new
     @asistencia_domingo_id = params[:asistencia_domingo_id]
+    @asistencia_reunion_evangelist_id = params[:asistencia_reunion_evangelist_id]
+    @asistencia_reunion_planificacion_id = params[:asistencia_reunion_planificacion_id]
   end
 
   # GET /reporte_semanal_celulas/1/edit
@@ -26,15 +28,13 @@ class ReporteSemanalCelulasController < ApplicationController
   # POST /reporte_semanal_celulas.json
   def create
     @reporte_semanal_celula = ReporteSemanalCelula.new(reporte_semanal_celula_params)
-    @asistencia_domingo_id = params[:asistencia_domingo_id]
     if @reporte_semanal_celula.save
-      redirect_to controller: 'success', action: 'index', lider: @reporte_semanal_celula.lider.name
+      redirect_to controller: 'success', action: 'index', lider: @reporte_semanal_celula.lider
       return
     end
     respond_to do |format|
       if !@reporte_semanal_celula.save
         format.html { render :new }
-        format.json { render json: { }, status: :unprocessable_entity }
       end
     end
   end
@@ -71,6 +71,6 @@ class ReporteSemanalCelulasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reporte_semanal_celula_params
-      params.require(:reporte_semanal_celula).permit(:lider, :anfitrion, :celula_id, :reunion_evaluacion, :visita_supervisor, :supervisor_id)
+      params.require(:reporte_semanal_celula).permit(:lider, :anfitrion, :celula_id, :reunion_evaluacion, :visita_supervisor, :supervisor_id, :asistencia_domingo_id, :asistencia_reunion_planificacion_id, :asistencia_reunion_evangelist_id)
     end
 end

@@ -1,3 +1,4 @@
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
 <%= form_with(model: asistencia_domingo, local: true) do |form| %>
   <% if asistencia_domingo.errors.any? %>
     <div id="error_explanation">
@@ -11,27 +12,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :hnos_a %>
-    <%= form.number_field :hnos_a %>
+<div class="-mx-3 md:flex mb-6">
+  <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+    <%= form.label :hnos_a, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.number_field :hnos_a, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
   </div>
 
-  <div class="field">
-    <%= form.label :hnos_i %>
-    <%= form.number_field :hnos_i %>
+  <div class="md:w-1/2 px-3">
+    <%= form.label :hnos_i, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.number_field :hnos_i, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
+  </div>
+</div>
+
+<div class="-mx-3 md:flex mb-6">
+  <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+    <%= form.label :friends, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.number_field :friends, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
   </div>
 
-  <div class="field">
-    <%= form.label :friends %>
-    <%= form.number_field :friends %>
+  <div class="md:w-1/2 px-3">
+    <%= form.label :childrens, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.number_field :childrens, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :childrens %>
-    <%= form.number_field :childrens %>
-  </div>
+  <%= form.hidden_field :asistencia_reunion_planificacion_id, value: @asistencia_reunion_planificacion_id  %>
 
-  <div class="actions">
-    <%= form.submit "Save and next" %>
-  </div>
+  <%= form.hidden_field :asistencia_reunion_evangelist_id, value: @asistencia_reunion_evangelist_id  %>
+
+    <div class="text-right">
+      <%= button_tag( :class => "bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center") do %>
+        Next <svg class="w-4 h-4 mr-2"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14 2h-7.229l7.014 7h-13.785v6h13.785l-7.014 7h7.229l10-10z"/></svg>
+      <% end %>
+    </div>
 <% end %>
+</div>

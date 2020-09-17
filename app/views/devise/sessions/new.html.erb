@@ -1,0 +1,22 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2'}) do |f| %>
+  <div class="field">
+    <%= f.label :email, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %><br />
+    <%= f.password_field :password, autocomplete: "current-password", :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me, :class => "form-checkbox text-green-500" %>
+      <%= f.label :remember_me, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    </div>
+  <% end %>
+
+  <div class="flex flex-1 justify-end">
+    <%= f.submit "Log in", class: "inline-block text-sm px-4 py-2 leading-none border rounded text border-white hover:border-transparent hover:text-white hover:bg-black mt-4 lg:mt-0" %>
+  </div>
+<% end %>

@@ -16,6 +16,7 @@ class AsistenciaDomingosController < ApplicationController
   def new
     @asistencia_domingo = AsistenciaDomingo.new
     @asistencia_reunion_evangelist_id = params[:asistencia_reunion_evangelist_id]
+    @asistencia_reunion_planificacion_id = params[:asistencia_reunion_planificacion_id]
   end
 
   # GET /asistencia_domingos/1/edit
@@ -27,8 +28,11 @@ class AsistenciaDomingosController < ApplicationController
   def create
     @asistencia_domingo = AsistenciaDomingo.new(asistencia_domingo_params)
 
+    asistencia_reunion_evangelist_id = asistencia_reunion_evangelist_param[:asistencia_reunion_evangelist_id]
+    asistencia_reunion_planificacion_id = asistencia_reunion_planificacion_param[:asistencia_reunion_planificacion_id]
+
     if @asistencia_domingo.save
-      redirect_to controller: 'reporte_semanal_celulas', action: 'new', asistencia_domingo_id: @asistencia_domingo.id, notice: 'Asistencia domingos was successfully created.'
+      redirect_to controller: 'reporte_semanal_celulas', action: 'new', asistencia_domingo_id: @asistencia_domingo.id, asistencia_reunion_evangelist_id: asistencia_reunion_evangelist_id, asistencia_reunion_planificacion_id: asistencia_reunion_planificacion_id , notice: 'Asistencia domingos was successfully created.'
       return
     end
 
@@ -75,5 +79,13 @@ class AsistenciaDomingosController < ApplicationController
     # Only allow a list of trusted parameters through.
     def asistencia_domingo_params
       params.require(:asistencia_domingo).permit(:hnos_a, :hnos_i, :friends, :childrens)
+    end
+
+    def asistencia_reunion_planificacion_param
+      params.require(:asistencia_domingo).permit(:asistencia_reunion_planificacion_id)
+    end
+
+    def asistencia_reunion_evangelist_param
+      params.require(:asistencia_domingo).permit(:asistencia_reunion_evangelist_id)
     end
 end

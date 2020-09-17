@@ -15,20 +15,20 @@ class AsistenciaReunionEvangelistsController < ApplicationController
   # GET /asistencia_reunion_evangelists/new
   def new
     @asistencia_reunion_evangelist = AsistenciaReunionEvangelist.new
-    @asistencia_reunion_evangelist_id = params[:asistencia_reunion_evangelist_id]
+    @asistencia_reunion_planificacion_id = params[:asistencia_reunion_planificacion_id]
   end
 
   # GET /asistencia_reunion_evangelists/1/edit
   def edit
+    @asistencia_reunion_planificacion_id = asistencia_reunion_planificacion[:asistencia_reunion_planificacion_id]
   end
 
   # POST /asistencia_reunion_evangelists
   # POST /asistencia_reunion_evangelists.json
   def create
     @asistencia_reunion_evangelist = AsistenciaReunionEvangelist.new(asistencia_reunion_evangelist_params)
-
     if @asistencia_reunion_evangelist.save
-      redirect_to controller: 'asistencia_domingos', action: 'new', asistencia_reunion_evangelist_id: @asistencia_reunion_evangelist.id, notice: 'Asistencia reunion evangelist was successfully created.'
+      redirect_to controller: 'asistencia_domingos', action: 'new', asistencia_reunion_evangelist_id: @asistencia_reunion_evangelist.id, asistencia_reunion_planificacion_id: asistencia_reunion_planificacion[:asistencia_reunion_planificacion_id], notice: 'Asistencia reunion evangelist was successfully created.'
       return
     end
 
@@ -75,5 +75,9 @@ class AsistenciaReunionEvangelistsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def asistencia_reunion_evangelist_params
       params.require(:asistencia_reunion_evangelist).permit(:hnos_a, :hnos_i, :friends, :childrens, :ofrenda, :aceptados, :personas_en_discipulado, :leccion, :candidatos_bautismo, :visitas, :personas_ministradas, :rec)
+    end
+
+    def asistencia_reunion_planificacion
+      params.require(:asistencia_reunion_evangelist).permit(:asistencia_reunion_planificacion_id)
     end
 end
