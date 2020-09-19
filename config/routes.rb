@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :digest_reporte_semanals
   devise_for :users
   resources :asistencia_reunion_evangelists
   resources :reporte_semanal_celulas

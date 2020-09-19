@@ -1,0 +1,29 @@
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+  <%= form_for digest_reporte_semanal do |form| %>
+
+    <div class="px-12">
+      <div class="px-6">
+        <%= form.label :desde, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.datetime_select :desde %>
+      </div>
+
+      <div class="px-6">
+        <%= form.label :hasta, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.datetime_select :hasta %>
+      </div>
+    </div>
+
+    <div class="px-12">
+      <div class="px-12">
+        <%= form.label :obversaciones, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+        <%= form.text_area :obversaciones, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+      </div>
+    </div>
+
+    <div class="actions text-right">
+      <%= button_tag( :class => "bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center") do %>
+        Submit
+      <% end %>
+    </div>
+  <% end %>
+</div>
