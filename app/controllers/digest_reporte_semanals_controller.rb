@@ -32,16 +32,13 @@ class DigestReporteSemanalsController < ApplicationController
     curated_params[:hasta] = hasta
     curated_params[:obversaciones] = digest_reporte_semanal_params[:obversaciones]
     @digest_reporte_semanal = DigestReporteSemanal.new(curated_params)
-    @asistencia_reunion_planification = AsistenciaReunionPlanificacion.where("created_at > :desde", desde: @digest_reporte_semanal.desde).where("created_at < :hasta", hasta: @digest_reporte_semanal.hasta)
-    asistencia_dia_viernes = AsistenciaReunionEvangelist.where("created_at > :desde", desde: @digest_reporte_semanal.desde).where("created_at < :hasta", hasta: @digest_reporte_semanal.hasta)
-    asistencia_dia_domingo = AsistenciaDomingo.where("created_at > :desde", desde: @digest_reporte_semanal.desde).where("created_at < :hasta", hasta: @digest_reporte_semanal.hasta)
-
-    # puts @digest_reporte_semanal.desde
-    # puts @digest_reporte_semanal.hasta
+    @reporte_semanal_celula = ReporteSemanalCelula.where("created_at > :desde", desde: @digest_reporte_semanal.desde).where("created_at < :hasta", hasta: @digest_reporte_semanal.hasta)
 
     respond_to do |format|
       format.html
-      format.xlsx
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="Reporte semanal de supervisor de celula.xlsx"'
+      }
     end
 
     # Axlsx::Package.new do |p|

@@ -1,6 +1,19 @@
 wb = xlsx_package.workbook
-wb.add_worksheet(name: "Reporte Semanal") do |sheet|
-  @asistencia_reunion_planification.each do |reporte|
-    sheet.add_row [reporte.reflexion_semana]
+wb.add_worksheet(name: "REPORTE SEMANAL SUP CELULA") do |sheet|
+  sheet.add_row ["Lider", "Asistencia a reunion de planificacion"], :index => 30
+  sheet.merge_cells "B1:E1"
+  sheet.add_row ["", "Miembros de nucle", "Miembros de Apoyo", "Total", "Ofrenda"]
+  @reporte_semanal_celula.each do |r|
+    planificacion = r.asistencia_reunion_planificacion
+    if planificacion != nil
+      total = planificacion.miembros_nucleo + planificacion.miembros_apoyo
+      sheet.add_row [r.lider, planificacion.miembros_nucleo, planificacion.miembros_apoyo, total, planificacion.ofrenda]
+    end
+
+    asistencia_dia_viernes = r.asistencia_reunion_evangelist
+    asistencia_doming = r.asistencia_domingo
+
+    sheet.add_row ["Lider", "Asistencia el dia viernes", "Asistencia del dia domingo"]
+    sheet.merge_cells ""
   end
 end
