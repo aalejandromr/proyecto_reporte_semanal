@@ -24,12 +24,36 @@ class DigestReporteSemanalsController < ApplicationController
   # POST /digest_reporte_semanals
   # POST /digest_reporte_semanals.json
   def create
-    @digest_reporte_semanal = DigestReporteSemanal.new(digest_reporte_semanal_params)
-    asistencia_reunion_planification = AsistenciaReunionPlanificacion.where("created_at > :desde", desde: '2020-09-17').where("created_at < :hasta", hasta: '2020-09-17')
-    asistencia_dia_viernes = AsistenciaReunionEvangelist.where("created_at > :desde", desde: '2020-09-17').where("created_at < :hasta", hasta: '2020-09-17')
-    asistencia_dia_domingo = AsistenciaDomingo.where("created_at > :desde", desde: '2020-09-17').where("created_at < :hasta", hasta: '2020-09-17')
 
+    desde = time_value(digest_reporte_semanal_params, 'desde')
+    hasta = time_value(digest_reporte_semanal_params, 'hasta')
+    curated_params = {}
+    curated_params[:desde] = desde
+    curated_params[:hasta] = hasta
+    curated_params[:obversaciones] = digest_reporte_semanal_params[:obversaciones]
+    @digest_reporte_semanal = DigestReporteSemanal.new(curated_params)
+    @asistencia_reunion_planification = AsistenciaReunionPlanificacion.where("created_at > :desde", desde: @digest_reporte_semanal.desde).where("created_at < :hasta", hasta: @digest_reporte_semanal.hasta)
+    asistencia_dia_viernes = AsistenciaReunionEvangelist.where("created_at > :desde", desde: @digest_reporte_semanal.desde).where("created_at < :hasta", hasta: @digest_reporte_semanal.hasta)
+    asistencia_dia_domingo = AsistenciaDomingo.where("created_at > :desde", desde: @digest_reporte_semanal.desde).where("created_at < :hasta", hasta: @digest_reporte_semanal.hasta)
 
+    # puts @digest_reporte_semanal.desde
+    # puts @digest_reporte_semanal.hasta
+
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
+
+    # Axlsx::Package.new do |p|
+    #   p.workbook.add_worksheet(:name => "Pie Chart") do |sheet|
+    #     sheet.add_row ["Simple Pie Chart"]
+    #     %w(first second third).each { |label| sheet.add_row [label, rand(24)+1] }
+    #     sheet.add_chart(Axlsx::Pie3DChart, :start_at => [0,5], :end_at => [10, 20], :title => "example 3: Pie Chart") do |chart|
+    #       chart.add_series :data => sheet["B2:B4"], :labels => sheet["A2:A4"],  :colors => ['FF0000', '00FF00', '0000FF']
+    #     end
+    #   end
+    #   p.serialize('simple.xlsx')
+    # end
   end
 
   # PATCH/PUT /digest_reporte_semanals/1
@@ -64,6 +88,10 @@ class DigestReporteSemanalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def digest_reporte_semanal_params
-      params.fetch(:digest_reporte_semanal, {})
+      params.fetch(:digest_reporte_semanal).permit(:desde, :hasta, :obversaciones)
+    end
+
+    def time_value(hash, field)
+      Time.zone.local(*(1..5).map { |i| hash["#{field}(#{i}i)"] })
     end
 end

@@ -1,0 +1,6 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Reporte Semanal") do |sheet|
+  @asistencia_reunion_planification.each do |reporte|
+    sheet.add_row [reporte.reflexion_semana]
+  end
+end

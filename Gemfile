@@ -54,5 +54,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
-gem 'caxlsx'
-gem 'caxlsx_rails'
+# gem 'spreadsheet'
+gem 'axlsx_rails'
+# gem 'caxlsx'
+# gem 'caxlsx_rails'
