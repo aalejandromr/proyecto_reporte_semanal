@@ -48,6 +48,14 @@
     <%= form.collection_select :supervisor_id, Supervisor.all, :id, :name, {prompt: true}, {class: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"} %>
   </div>
 </div>
+
+<div class="-mx-3 md:flex mb-12">
+  <div class="md:w-1/2 px-3 mb-12 md:mb-0">
+    <%= form.label :observaciones, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.text_area :observaciones, :class => "form-checkbox text-green-500" %>
+  </div>
+</div>
+
   <%= form.hidden_field :asistencia_domingo_id, value: @asistencia_domingo_id %>
   <%= form.hidden_field :asistencia_reunion_evangelist_id, value: @asistencia_reunion_evangelist_id %>
   <%= form.hidden_field :asistencia_reunion_planificacion_id, value: @asistencia_reunion_planificacion_id %>

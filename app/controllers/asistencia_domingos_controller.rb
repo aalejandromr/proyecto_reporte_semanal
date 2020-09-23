@@ -78,7 +78,7 @@ class AsistenciaDomingosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def asistencia_domingo_params
-      params.require(:asistencia_domingo).permit(:hnos_a, :hnos_i, :friends, :childrens)
+      params.require(:asistencia_domingo).permit(:hnos_a, :hnos_i, :friends, :childrens, :ofrenda_especial_cosecha)
     end
 
     def asistencia_reunion_planificacion_param

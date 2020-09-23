@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_023847) do
+ActiveRecord::Schema.define(version: 2020_09_23_002328) do
 
   create_table "asistencia_domingos", force: :cascade do |t|
     t.integer "hnos_a"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_023847) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rec"
     t.integer "conv"
+    t.float "ofrenda_especial_cosecha"
   end
 
   create_table "asistencia_reunion_evangelista", force: :cascade do |t|
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_023847) do
     t.integer "asistencia_domingo_id"
     t.integer "asistencia_reunion_evangelist_id"
     t.integer "asistencia_reunion_planificacion_id"
+    t.text "observaciones"
     t.index ["asistencia_domingo_id"], name: "index_reporte_semanal_domingo_id"
     t.index ["asistencia_reunion_evangelist_id"], name: "index_repote_semanal_reunion_evangelist_id"
     t.index ["asistencia_reunion_planificacion_id"], name: "index_reporte_semanal_reunion_planificacion"

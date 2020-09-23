@@ -2,18 +2,51 @@ wb = xlsx_package.workbook
 wb.add_worksheet(name: "REPORTE SEMANAL SUP CELULA") do |sheet|
   sheet.add_row ["Lider", "Asistencia a reunion de planificacion"], :index => 30
   sheet.merge_cells "B1:E1"
-  sheet.add_row ["", "Miembros de nucle", "Miembros de Apoyo", "Total", "Ofrenda"]
+  sheet.add_row ["", "Miembros de nucleo", "Miembros de Apoyo", "Total", "Ofrenda"]
+  sheet.merge_cells "A1:A2"
+  count = 1
   @reporte_semanal_celula.each do |r|
     planificacion = r.asistencia_reunion_planificacion
     if planificacion != nil
       total = planificacion.miembros_nucleo + planificacion.miembros_apoyo
       sheet.add_row [r.lider, planificacion.miembros_nucleo, planificacion.miembros_apoyo, total, planificacion.ofrenda]
+      count += 1
     end
 
-    asistencia_dia_viernes = r.asistencia_reunion_evangelist
-    asistencia_doming = r.asistencia_domingo
-
-    sheet.add_row ["Lider", "Asistencia el dia viernes", "Asistencia del dia domingo"]
-    sheet.merge_cells ""
   end
+
+  desired_index = count + 3
+  sheet.add_row []
+  sheet.add_row []
+  sheet.add_row []
+
+  current_row = sheet.add_row ["Lider", "Asistencia el dia viernes", "", "", "", "", "", "", "", "", "Asistencia del dia domingo"]
+  sheet.merge_cells "B#{current_row.row_index + 1}:J#{current_row.row_index + 1}"
+  sheet.merge_cells "K#{current_row.row_index + 1}:R#{current_row.row_index + 1}"
+  # puts "HERE"
+  # puts sheet.rows[current_row.row_index].cells[2].value
+  # sheet.merge_cells "K#{current_row.row_index + 1}:R#{current_row.row_index + 1}"
+  sheet.merge_cells "A#{current_row.row_index + 1}:A#{current_row.row_index + 2}"
+  sheet.add_row ["", "Hnos. A", "Hnos. I", "Amigos", "Niños", "Total", "Conv.", "Rec.", "Cand a Bau", "Ofrenda", "Hnos A.", "Hnos. I", "Amigos", "Niños", "Total", "Conv", "Rec", "Ofr. Esp. FC"]
+  @reporte_semanal_celula.each do |r|
+    asistencia_viernes = r.asistencia_reunion_evangelist
+    asistencia_domingo = r.asistencia_domingo
+    total = asistencia_viernes.hnos_a + asistencia_viernes.hnos_i + asistencia_viernes.friends + asistencia_viernes.childrens
+    total_domingo = asistencia_domingo.hnos_a + asistencia_domingo.hnos_i + asistencia_domingo.friends + asistencia_domingo.childrens
+    sheet.add_row [r.lider, asistencia_viernes.hnos_a, asistencia_viernes.hnos_i, asistencia_viernes.friends, asistencia_viernes.childrens, total, asistencia_viernes.aceptados, asistencia_viernes.rec, asistencia_viernes.candidatos_bautismo, asistencia_viernes.ofrenda, asistencia_domingo.hnos_a, asistencia_domingo.hnos_i, asistencia_domingo.friends, asistencia_domingo.childrens, total_domingo, asistencia_domingo.conv, asistencia_domingo.rec, 'TBD']
+  end
+
+  sheet.add_row []
+  sheet.add_row []
+  sheet.add_row ["Pastor", "TBD"]
+  sheet.add_row ["Supervisor", @reporte_semanal_celula.first.supervisor.name]
+  sheet.add_row ["Sector", "#{@reporte_semanal_celula.first.celula.sector.name}"]
+  sheet.add_row ["Observaciones", "TBD"]
+  sheet.add_row []
+  sheet.add_row []
+  sheet.add_row ["Fecha", @reporte_semanal_celula.first.created_at]
+  sheet.add_row []
+  sheet.add_row ["Nota"]
+  sheet.add_row ["Los hermanos (A) son los que se asignan al líder en su zona de trabajo"]
+  sheet.add_row ["Los hermanos (I) son los que se han involucrado al trabajo, de sos asignados"]
 end

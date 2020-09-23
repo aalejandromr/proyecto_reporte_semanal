@@ -36,6 +36,13 @@
   </div>
 </div>
 
+<div class="-mx-3 md:flex mb-6">
+  <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+    <%= form.label :ofrenda_especial_cosecha, :class => "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" %>
+    <%= form.number_field :ofrenda_especial_cosecha, :class => "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+  </div>
+</div>
+
   <%= form.hidden_field :asistencia_reunion_planificacion_id, value: @asistencia_reunion_planificacion_id  %>
 
   <%= form.hidden_field :asistencia_reunion_evangelist_id, value: @asistencia_reunion_evangelist_id  %>

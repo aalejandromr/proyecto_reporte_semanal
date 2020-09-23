@@ -25,6 +25,6 @@ class ReporteSemanalController < ApplicationController
   private
 
   def reporte_semanal_params
-    params.require(:reporte_semanal).permit(:asistencia_reunion_planificacion, :asistencia_reunion_evangelist, :asistencia_domingo)
+    params.require(:reporte_semanal).permit(:asistencia_reunion_planificacion, :asistencia_reunion_evangelist, :asistencia_domingo, :observaciones)
   end
 end
