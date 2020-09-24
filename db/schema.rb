@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_002328) do
+ActiveRecord::Schema.define(version: 2020_09_24_013117) do
 
   create_table "asistencia_domingos", force: :cascade do |t|
     t.integer "hnos_a"
@@ -85,6 +85,12 @@ ActiveRecord::Schema.define(version: 2020_09_23_002328) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "pastors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "reporte_semanal_celulas", force: :cascade do |t|
     t.string "lider"
     t.string "anfitrion"
@@ -115,6 +121,8 @@ ActiveRecord::Schema.define(version: 2020_09_23_002328) do
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "pastor_id"
+    t.index ["pastor_id"], name: "index_supervisors_on_pastor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -135,4 +143,5 @@ ActiveRecord::Schema.define(version: 2020_09_23_002328) do
   add_foreign_key "reporte_semanal_celulas", "asistencia_reunion_planificacions"
   add_foreign_key "reporte_semanal_celulas", "celulas"
   add_foreign_key "reporte_semanal_celulas", "supervisors"
+  add_foreign_key "supervisors", "pastors"
 end

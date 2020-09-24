@@ -2,17 +2,31 @@ wb = xlsx_package.workbook
 wb.add_worksheet(name: "REPORTE SEMANAL SUP CELULA") do |sheet|
   sheet.add_row ["Lider", "Asistencia a reunion de planificacion"], :index => 30
   sheet.merge_cells "B1:E1"
-  sheet.add_row ["", "Miembros de nucleo", "Miembros de Apoyo", "Total", "Ofrenda"]
+  header_row = sheet.add_row ["", "Miembros de nucleo", "Miembros de Apoyo", "Total", "Ofrenda"]
   sheet.merge_cells "A1:A2"
   count = 1
+  last_row = header_row
   @reporte_semanal_celula.each do |r|
     planificacion = r.asistencia_reunion_planificacion
     if planificacion != nil
       total = planificacion.miembros_nucleo + planificacion.miembros_apoyo
-      sheet.add_row [r.lider, planificacion.miembros_nucleo, planificacion.miembros_apoyo, total, planificacion.ofrenda]
+      last_row = sheet.add_row [r.lider, planificacion.miembros_nucleo, planificacion.miembros_apoyo, total, planificacion.ofrenda]
       count += 1
     end
+  end
 
+  if header_row.row_index != last_row.row_index
+    cells = sheet["B#{header_row.row_index + 1}:E#{header_row.row_index + 1}"]
+    totales = []
+    # ["", "=SUM(B#{header_row.row_index + 1}:B#{last_row.row_index})"]
+    ("A".."E").to_a.each do |colum|
+      if colum == "A"
+        totales.append("TOTALES")
+      else
+        totales.append("=SUM(#{colum}#{header_row.row_index + 2}:#{colum}#{last_row.row_index + 1})")
+      end
+    end
+    sheet.add_row totales
   end
 
   desired_index = count + 3
@@ -27,18 +41,45 @@ wb.add_worksheet(name: "REPORTE SEMANAL SUP CELULA") do |sheet|
   # puts sheet.rows[current_row.row_index].cells[2].value
   # sheet.merge_cells "K#{current_row.row_index + 1}:R#{current_row.row_index + 1}"
   sheet.merge_cells "A#{current_row.row_index + 1}:A#{current_row.row_index + 2}"
-  sheet.add_row ["", "Hnos. A", "Hnos. I", "Amigos", "Niños", "Total", "Conv.", "Rec.", "Cand a Bau", "Ofrenda", "Hnos A.", "Hnos. I", "Amigos", "Niños", "Total", "Conv", "Rec", "Ofr. Esp. FC"]
+  header_row = sheet.add_row ["", "Hnos. A", "Hnos. I", "Amigos", "Niños", "Total", "Conv.", "Rec.", "Cand a Bau", "Ofrenda", "Hnos A.", "Hnos. I", "Amigos", "Niños", "Total", "Conv", "Rec", "Ofr. Esp. FC"]
+  last_row = header_row
   @reporte_semanal_celula.each do |r|
     asistencia_viernes = r.asistencia_reunion_evangelist
     asistencia_domingo = r.asistencia_domingo
     total = asistencia_viernes.hnos_a + asistencia_viernes.hnos_i + asistencia_viernes.friends + asistencia_viernes.childrens
     total_domingo = asistencia_domingo.hnos_a + asistencia_domingo.hnos_i + asistencia_domingo.friends + asistencia_domingo.childrens
-    sheet.add_row [r.lider, asistencia_viernes.hnos_a, asistencia_viernes.hnos_i, asistencia_viernes.friends, asistencia_viernes.childrens, total, asistencia_viernes.aceptados, asistencia_viernes.rec, asistencia_viernes.candidatos_bautismo, asistencia_viernes.ofrenda, asistencia_domingo.hnos_a, asistencia_domingo.hnos_i, asistencia_domingo.friends, asistencia_domingo.childrens, total_domingo, asistencia_domingo.conv, asistencia_domingo.rec, 'TBD']
+    last_row = sheet.add_row [r.lider, asistencia_viernes.hnos_a, asistencia_viernes.hnos_i, asistencia_viernes.friends, asistencia_viernes.childrens, total, asistencia_viernes.aceptados, asistencia_viernes.rec, asistencia_viernes.candidatos_bautismo, asistencia_viernes.ofrenda, asistencia_domingo.hnos_a, asistencia_domingo.hnos_i, asistencia_domingo.friends, asistencia_domingo.childrens, total_domingo, asistencia_domingo.conv, asistencia_domingo.rec, asistencia_domingo.ofrenda_especial_cosecha]
+  end
+
+  if header_row.row_index != last_row.row_index
+    cells = sheet["B#{header_row.row_index + 1}:R#{header_row.row_index + 1}"]
+    totales = []
+    # ["", "=SUM(B#{header_row.row_index + 1}:B#{last_row.row_index})"]
+    ("A".."R").to_a.each do |colum|
+      if colum == "A"
+        totales.append("TOTALES")
+      else
+        totales.append("=SUM(#{colum}#{header_row.row_index + 2}:#{colum}#{last_row.row_index + 1})")
+      end
+    end
+    # puts "HERE"
+    # puts cells[0]
+    # cells.each_with_index do |cell, index|
+    #   # puts cell
+    #   puts cell.value
+    #   puts index
+    #   row_index = cell.row.index + 1
+    #   # cell.type = :string
+    #   # cell.value = "=SUM(B#{header_row.row_index + 1}:B#{row_index})"
+    # end
+    sheet.add_row totales
   end
 
   sheet.add_row []
   sheet.add_row []
-  sheet.add_row ["Pastor", "TBD"]
+  sheet.add_row []
+
+  sheet.add_row ["Pastor", @reporte_semanal_celula.first.supervisor.pastor.name]
   sheet.add_row ["Supervisor", @reporte_semanal_celula.first.supervisor.name]
   sheet.add_row ["Sector", "#{@reporte_semanal_celula.first.celula.sector.name}"]
   sheet.add_row ["Observaciones", "TBD"]
